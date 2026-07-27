@@ -41,18 +41,18 @@ class PostController extends Controller{
             'user_id' => $_SESSION['user_info']['id'],
         ];
 
-        $this->postsModel->new_post($post_dsta);
+        $this->postsModel->newPost($post_dsta);
         
-        $this->NotificationsController->notificate_followers_for_post($_SESSION['user_info']['id']);
+        $this->NotificationsController->notificateFollowersForPost($_SESSION['user_info']['id']);
 
         $this->refreshPage();
 
     }
 
-    public function open_post($id)
+    public function openPost($id)
     {
-        $post_data = $this->postsModel->get_post_by_id($id);
-        $commentsArr = $this->commentsModel->get_comments_by_post_id($id);
+        $post_data = $this->postsModel->getPostById($id);
+        $commentsArr = $this->commentsModel->getCommentsByPostId($id);
 
         $data = [ 
             'post_data' => $post_data,

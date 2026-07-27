@@ -21,7 +21,7 @@ class HomeController extends Controller{
 
     public function index(){
 
-        $posts = $this->postsModel->get_posts();
+        $posts = $this->postsModel->getPosts();
         $data['posts'] = $posts;
 
         $this->load('home', $data);
@@ -32,7 +32,7 @@ class HomeController extends Controller{
         $this->redirectIfNotAuthenticated();
         $my_id = $_SESSION['user_info']['id'];
 
-        $posts = $this->postsModel->get_posts_by_follows($my_id);
+        $posts = $this->postsModel->getPostsByFollows($my_id);
         $data['posts'] = $posts;
         
         $this->load('home', $data);

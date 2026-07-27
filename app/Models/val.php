@@ -15,16 +15,16 @@ class val extends model implements ValInterface{
         $this->builder = new QueryBuilder();
     }
 
-    public function is_user_exsist($username)
+    public function doesUserExsist($username)
     {
-        if ($this->get_user($username)) {
+        if ($this->getUser($username)) {
             return true;
         } else {
             return false;
         }
 
     }
-    public function get_user($username)
+    public function getUser($username)
     {
 
         $user = $this->builder->select('users', ['username'])
@@ -36,9 +36,9 @@ class val extends model implements ValInterface{
 
     }
 
-    public function is_password_wrong($username, $pwd)
+    public function isPasswordWrong($username, $pwd)
     {
-        $hashedpwd = $this->get_password($username);
+        $hashedpwd = $this->getPassword($username);
         
         if (password_verify($pwd, $hashedpwd)) {
             return false;
@@ -47,7 +47,7 @@ class val extends model implements ValInterface{
         }
 
     }
-    public function get_password($username)
+    public function getPassword($username)
     {
         $user = $this->builder->select('users', ['username', 'pwd'])
                 ->WHERE(['username'], [$username], ['='])
@@ -58,15 +58,15 @@ class val extends model implements ValInterface{
 
     }   
 
-    public function is_email_registered($email)
+    public function isEmailRegistered($email)
     {
-        if ($this->get_email($email)) {
+        if ($this->getEmail($email)) {
             return true;
         } else {
             return false;
         }
     }
-    public function get_email($email)
+    public function getEmail($email)
     {
 
         $user = $this->builder->select('users', ['username'])

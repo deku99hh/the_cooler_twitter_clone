@@ -94,7 +94,7 @@
                             <small class="text-muted d-block mb-3">${post.created_at}</small>
 
                             <div class="d-flex gap-3">
-                                <a href="http://localhost/the_cooler_twitter_clone/Post/open_post/${post.post_id}" class="text-decoration-none text-secondary">Comments</a>
+                                <a href="http://localhost/the_cooler_twitter_clone/Post/openPost/${post.post_id}" class="text-decoration-none text-secondary">Comments</a>
                                 ${res.user_info ? `
                                     <a href="http://localhost/the_cooler_twitter_clone/likes/like/${post.post_id}" class="text-decoration-none">
                                         <button class="btn btn-sm btn-outline-danger">Like ${post.total_likes ?? 0}</button>

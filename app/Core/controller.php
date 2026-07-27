@@ -65,7 +65,7 @@ class Controller
         ];
 
         if (!empty($view_data)) {
-            $result;
+            $result = [];
             foreach ($view_data as $key => $value) {
                 $result['data'][$key] = $value;
             }

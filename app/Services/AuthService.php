@@ -23,11 +23,11 @@ class AuthService implements AuthServiceInterface{
     {
         $errors = [];
 
-        if ($this->is_input_empty($username, $pwd)) {
+        if ($this->isInputEmpty($username, $pwd)) {
             $errors['empty_input'] = "fill in all fields!";
         }
         else {
-            if (!$this->validationModel->is_user_exsist($username) || $this->validationModel->is_password_wrong($username, $pwd)) {
+            if (!$this->validationModel->doesUserExsist($username) || $this->validationModel->isPasswordWrong($username, $pwd)) {
                 $errors['wrong_username_or_password'] = "wrong username or password!";
             }
         }
@@ -39,16 +39,16 @@ class AuthService implements AuthServiceInterface{
     {
         $errors = [];
 
-        if ($this->is_input_empty($username, $pwd, $email)) {
+        if ($this->isInputEmpty($username, $pwd, $email)) {
             $errors['empty_input'] = "fill in all fields!";
         } else {
-            if ($this->is_email_invalid($email)) {
+            if ($this->isEmailInvalid($email)) {
                 $errors['invalid_email'] = "invalid email used!";
             }
-            if ($this->validationModel->is_user_exsist($username)) {
+            if ($this->validationModel->doesUserExsist($username)) {
                 $errors['username_taken'] = "username already taken!";
             }
-            if ($this->validationModel->is_email_registered($email)) {
+            if ($this->validationModel->isEmailRegistered($email)) {
                 $errors['email_used'] = "email alredy registerd!";
             }
 
@@ -59,7 +59,7 @@ class AuthService implements AuthServiceInterface{
 
 
 
-    public static function is_input_empty($username, $pwd, $email = null) 
+    public static function isInputEmpty($username, $pwd, $email = null) 
     {
         if (empty($username) || empty($pwd)) {
             return true;
@@ -69,7 +69,7 @@ class AuthService implements AuthServiceInterface{
         }
         return false;
     }
-    public static function is_email_invalid($email)
+    public static function isEmailInvalid($email)
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return true;

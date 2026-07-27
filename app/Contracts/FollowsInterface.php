@@ -4,13 +4,13 @@ namespace Contracts;
 
 interface FollowsInterface 
 {
-    public function get_follows($my_id);
+    public function getFollows($my_id);
 
-    public function get_followeds($my_id);
+    public function getFolloweds($my_id);
 
-    public function get_follows_num($user_id);
+    public function getFollowsNum($user_id);
 
-    public function get_followeds_num($user_id);
+    public function getFollowedsNum($user_id);
 
     public function doIFollowHem($user_id);
 

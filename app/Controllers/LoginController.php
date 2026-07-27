@@ -46,7 +46,7 @@ class LoginController extends Controller{
             $this->redirect("login");
         }
         else {
-            $user_data = $this->userModel->get_user_data($username);
+            $user_data = $this->userModel->getUserDataByUsername($username);
             $_SESSION['user_info'] = [
                 'id' => $user_data['user_id'],
                 'username' => $user_data['username'],

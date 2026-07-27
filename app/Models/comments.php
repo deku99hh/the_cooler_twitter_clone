@@ -15,7 +15,7 @@ class comments extends model implements CommentsInterface{
         $this->builder = new QueryBuilder();
     }
 
-    public function new_comment($comment_data)
+    public function newComment($comment_data)
     {
         $newUserId = $this->builder->create(
             'comments', 
@@ -26,7 +26,7 @@ class comments extends model implements CommentsInterface{
         return 1;
     }
 
-    public function get_comments_by_post_id($post_id)
+    public function getCommentsByPostId($post_id)
     {
         $comments = $this->builder
             ->select('users', [

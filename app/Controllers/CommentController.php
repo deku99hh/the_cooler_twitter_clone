@@ -34,7 +34,7 @@ class CommentController extends Controller{
 
     public function comment($post_id)
     {
-        $post_data = $this->postsModel->get_post_by_id($post_id);
+        $post_data = $this->postsModel->getPostById($post_id);
         $data['post_data'] = $post_data;
         $this->load('comment', $data);
 
@@ -50,11 +50,11 @@ class CommentController extends Controller{
             'post_id' => $post_id
         ];
 
-        $this->commentsModel->new_comment($comment_data);
+        $this->commentsModel->newComment($comment_data);
 
-        $this->NotificationsController->notificate_author_for_comments($post_id);
+        $this->NotificationsController->notificateAuthorForComments($post_id);
 
-        $this->redirect("Post/open_post/" . $post_id);
+        $this->redirect("Post/openPost/" . $post_id);
     }
 
 }

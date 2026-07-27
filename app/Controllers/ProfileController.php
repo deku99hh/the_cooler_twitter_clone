@@ -35,10 +35,10 @@ class ProfileController extends Controller{
 
         $my_id = $_SESSION['user_info']['id'];
 
-        $user_data = $this->userModel->get_user_data($_SESSION['user_info']['username']);
+        $user_data = $this->userModel->getUserDataByUsername($_SESSION['user_info']['username']);
 
-        $num_who_follows_A = $this->followsModel->get_follows_num($my_id);
-        $num_who_A_is_following = $this->followsModel->get_followeds_num($my_id);
+        $num_who_follows_A = $this->followsModel->getFollowsNum($my_id);
+        $num_who_A_is_following = $this->followsModel->getFollowedsNum($my_id);
         
         $data = [ 
             'user_data' => $user_data,
@@ -57,10 +57,10 @@ class ProfileController extends Controller{
             $doIFollowHem = $this->followsModel->doIFollowHem($user_id);
         }
 
-        $user_data = $this->userModel->get_user_data_by_id($user_id);
+        $user_data = $this->userModel->getUserDataById($user_id);
 
-        $num_who_follows_A = $this->followsModel->get_follows_num($user_id);
-        $num_who_A_is_following = $this->followsModel->get_followeds_num($user_id);
+        $num_who_follows_A = $this->followsModel->getFollowsNum($user_id);
+        $num_who_A_is_following = $this->followsModel->getFollowedsNum($user_id);
         $profile = [
             'num_who_follows_A' => $num_who_follows_A,
             'num_who_A_is_following' => $num_who_A_is_following,
@@ -77,7 +77,7 @@ class ProfileController extends Controller{
     {
         $this->redirectIfNotAuthenticated();
 
-        $data['userdata'] = $this->userModel->get_user_data_by_id($_SESSION['user_info']['id']);
+        $data['userdata'] = $this->userModel->getUserDataById($_SESSION['user_info']['id']);
         $this->load('editProfile', $data);
     }
 

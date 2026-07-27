@@ -4,11 +4,11 @@ namespace Contracts;
 
 interface UserInterface 
 {
-    public function get_user_data($username);
+    public function getUserDataByUsername($username);
 
-    public function get_user_data_by_id($user_id);
+    public function getUserDataById($user_id);
 
-    public function creat_user($username, $name, $pwd, $email);
+    public function creatUser($username, $name, $pwd, $email);
 
-    public function set_user($username, $name, $pwd, $email);
+    public function setUser($username, $name, $pwd, $email);
 }

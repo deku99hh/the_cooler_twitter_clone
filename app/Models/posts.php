@@ -15,7 +15,7 @@ class posts extends model implements PostsInterface{
         $this->builder = new QueryBuilder();
     }
 
-    public function get_posts()
+    public function getPosts()
     {
 
         if (isset($_SESSION['user_info'])) {
@@ -79,7 +79,7 @@ class posts extends model implements PostsInterface{
 
     }
 
-    public function get_posts_by_follows($my_id)
+    public function getPostsByFollows($my_id)
     {
         $posts = $this->builder
             ->select('users', [
@@ -116,7 +116,7 @@ class posts extends model implements PostsInterface{
         return $posts;
     }
 
-    public function new_post($post_dsta)
+    public function newPost($post_dsta)
     {
         $newUserId = $this->builder->create(
             'posts', 
@@ -127,7 +127,7 @@ class posts extends model implements PostsInterface{
         return 1;
     }
 
-    public function get_post_by_id($post_id)
+    public function getPostById($post_id)
     {
         $result = $this->builder
             ->select('users', [
@@ -160,7 +160,7 @@ class posts extends model implements PostsInterface{
         return $result[0] ?? null;
     }
 
-    public function get_author_id($post_id)
+    public function getAuthorIdByPostId($post_id)
     {
         $result = $this->builder
             ->select('posts', [

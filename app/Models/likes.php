@@ -15,7 +15,7 @@ class likes extends model implements LikesInterface{
         $this->builder = new QueryBuilder();
     }
 
-    public function toggle_like($post_id, $user_id)
+    public function toggleLike($post_id, $user_id)
     {
         $existingLike = $this->builder
             ->select('likes', ['user_id', 'post_id'])

@@ -15,7 +15,7 @@ class user extends model implements UserInterface{
         $this->builder = new QueryBuilder();
     }
     
-    public function get_user_data($username)
+    public function getUserDataByUsername($username)
     {
 
         $user = $this->builder->select('users', ['username', 'email', 'verified', 'name', 'user_id', 'created_at', 'about_text', 'birthday', 'links'])
@@ -26,7 +26,7 @@ class user extends model implements UserInterface{
         return $user[0] ?? null;
     }
 
-    public function get_user_data_by_id($user_id)
+    public function getUserDataById($user_id)
     {
 
         $user = $this->builder->select('users', ['username', 'email', 'verified', 'name', 'user_id', 'created_at', 'about_text', 'birthday', 'links'])
@@ -38,11 +38,11 @@ class user extends model implements UserInterface{
     }
 
 
-    public function creat_user($username, $name, $pwd, $email)
+    public function creatUser($username, $name, $pwd, $email)
     {
-        $this->set_user($username, $name, $pwd, $email);
+        $this->setUser($username, $name, $pwd, $email);
     }
-    public function set_user($username, $name, $pwd, $email)
+    public function setUser($username, $name, $pwd, $email)
     {
 
         $options = [ 'cost' => 12 ];

@@ -32,32 +32,32 @@ class NotificationsController extends Controller implements NotificationsControl
 
     public function index()
     {
-        $myfollows = $this->followsModel->get_follows($_SESSION['user_info']['id']);
-        $my_notification = $this->notificationsModel->get_my_Notification($_SESSION['user_info']['id'], $myfollows);
+        $myfollows = $this->followsModel->getFollows($_SESSION['user_info']['id']);
+        $my_notification = $this->notificationsModel->getMyNotification($_SESSION['user_info']['id'], $myfollows);
 
         $data['notifications'] = $my_notification;
         $this->load('notifications', $data);
     }
 
-    public function notificate_followers_for_post($user_id)
+    public function notificateFollowersForPost($user_id)
     {
-        $who_follows_me = $this->followsModel->get_followeds($user_id);
-        $this->notificationsModel->send_Notification_to_my_followers($who_follows_me, "check who posted a post!, one you follow!");
+        $who_follows_me = $this->followsModel->getFolloweds($user_id);
+        $this->notificationsModel->sendNotificationToMyFollowers($who_follows_me, "check who posted a post!, one you follow!");
 
     }
 
-    public function notificate_author_for_like($post_id)
+    public function notificateAuthorForLike($post_id)
     {
-        $user_id = $this->postsModel->get_author_id($post_id);
+        $user_id = $this->postsModel->getAuthorIdByPostId($post_id);
         $user_id = $user_id['user_id'];
-        $this->notificationsModel->send_Notification_to_author($user_id, $post_id, "someone loved your post");
+        $this->notificationsModel->sendNotificationToAuthor($user_id, $post_id, "someone loved your post");
     }
 
-    public function notificate_author_for_comments($post_id)
+    public function notificateAuthorForComments($post_id)
     {
-        $user_id = $this->postsModel->get_author_id($post_id);
+        $user_id = $this->postsModel->getAuthorIdByPostId($post_id);
         $user_id = $user_id['user_id'];
-        $this->notificationsModel->send_Notification_to_author($user_id, $post_id, "someone commented on your post");
+        $this->notificationsModel->sendNotificationToAuthor($user_id, $post_id, "someone commented on your post");
     }
 
 

@@ -25,7 +25,7 @@ class StarsController extends Controller{
             'user_id' => $_SESSION['user_info']['id'],
         ];
 
-        $this->starsModel->toggle_star($stars_data);
+        $this->starsModel->toggleStar($stars_data);
 
         $route = str_replace('/the_cooler_twitter_clone/', '', parse_url($_SERVER['HTTP_REFERER'] ?? '', PHP_URL_PATH));
 

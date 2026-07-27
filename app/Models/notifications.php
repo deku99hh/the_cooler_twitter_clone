@@ -15,7 +15,7 @@ class notifications extends model implements NotificationsInterface{
         $this->builder = new QueryBuilder();
     }
 
-    public function send_Notification_to_my_followers($who_follows_me, $text)
+    public function sendNotificationToMyFollowers($who_follows_me, $text)
     {
         foreach ($who_follows_me as $one_who_follow_me) {
             $this->builder->create('notification', 
@@ -25,7 +25,7 @@ class notifications extends model implements NotificationsInterface{
         }
     }
 
-    public function send_Notification_to_author($user_id, $post_id, $text)
+    public function sendNotificationToAuthor($user_id, $post_id, $text)
     {
         $this->builder->create('notification', 
             ['user_id', 'post_id', 'notification_text'], 
@@ -33,7 +33,7 @@ class notifications extends model implements NotificationsInterface{
         )->execute();
     }
 
-    public function get_my_Notification($user_id, $myfollows)
+    public function getMyNotification($user_id, $myfollows)
     {
 
         $notifications = $this->builder->selectAll('notification')

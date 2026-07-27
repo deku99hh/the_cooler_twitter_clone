@@ -40,7 +40,7 @@ class SignupController extends Controller{
         if ($errors) {
             $_SESSION['errors_signup'] = $errors;
 
-            $user_data = $this->userModel->get_user_data($username);
+            $user_data = $this->userModel->getUserDataByUsername($username);
             $signupData = [
                 "username" => $username,
                 "email" => $email,
@@ -51,9 +51,9 @@ class SignupController extends Controller{
             $this->redirect("signup");
         }
 
-        $this->userModel->creat_user($username, $name, $pwd, $email);
+        $this->userModel->creatUser($username, $name, $pwd, $email);
         
-        $user_data = $this->userModel->get_user_data($username);
+        $user_data = $this->userModel->getUserDataByUsername($username);
         $_SESSION['user_info'] = [
             'id' => $user_data['id'],
             'username' => $user_data['username'],

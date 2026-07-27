@@ -18,7 +18,7 @@ class follows extends model implements FollowsInterface{
     // a follows b
 
     // all b'es
-    public function get_follows($my_id)
+    public function getFollows($my_id)
     {
         $users = $this->builder->select('users', ['username', 'verified', 'name', 'user_id'])
             ->join('follows', 'users.user_id', 'follows.user_who_is_followed', 'inner')
@@ -30,7 +30,7 @@ class follows extends model implements FollowsInterface{
     }
 
     // a follows
-    public function get_followeds($my_id)
+    public function getFolloweds($my_id)
     {
         $users = $this->builder->select('users', ['username', 'verified', 'name', 'user_id'])
             ->join('follows', 'users.user_id', 'follows.user_who_is_followed', 'inner')
@@ -43,22 +43,22 @@ class follows extends model implements FollowsInterface{
 
 
 
-    public function get_follows_num($user_id)
+    public function getFollowsNum($user_id)
     {
-        $who_follows_A = $this->get_follows($user_id);
+        $who_follows_A = $this->getFollows($user_id);
         return count($who_follows_A);
     }
 
-    public function get_followeds_num($user_id)
+    public function getFollowedsNum($user_id)
     {
-        $who_A_is_following = $this->get_followeds($user_id);
+        $who_A_is_following = $this->getFolloweds($user_id);
         return count($who_A_is_following);
     }
 
     public function doIFollowHem($user_id)
     {
         $my_id = $_SESSION['user_info']['id'];
-        $myfolloeds = $this->get_follows($my_id);
+        $myfolloeds = $this->getFollows($my_id);
         foreach ($myfolloeds as $user) {
             if ($user['user_id'] == $user_id) {
                 return true;

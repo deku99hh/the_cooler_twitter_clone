@@ -15,7 +15,7 @@ class stars extends model implements StarsInterface{
         $this->builder = new QueryBuilder();
     }
 
-    public function toggle_star($stars_data)
+    public function toggleStar($stars_data)
     {
         $existingStar = $this->builder->selectAll("stars")
                 ->WHERE(["post_id", "user_id"], [ $stars_data['post_id'], $stars_data['user_id'] ], ['=', '='])

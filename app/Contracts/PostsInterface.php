@@ -4,13 +4,13 @@ namespace Contracts;
 
 interface PostsInterface 
 {
-    public function get_posts();
+    public function getPosts();
 
-    public function get_posts_by_follows($my_id);
+    public function getPostsByFollows($my_id);
 
-    public function new_post($post_dsta);
+    public function newPost($post_dsta);
 
-    public function get_post_by_id($post_id);
+    public function getPostById($post_id);
 
-    public function get_author_id($post_id);
+    public function getAuthorIdByPostId($post_id);
 }

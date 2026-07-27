@@ -32,7 +32,7 @@
             res.data.notifications.reverse().forEach(notification => {
                 
                 let targetUrl = notification.post_id
-                    ? `http://localhost/the_cooler_twitter_clone/Post/open_post/${notification.post_id}` 
+                    ? `http://localhost/the_cooler_twitter_clone/Post/openPost/${notification.post_id}` 
                     : `#`;
 
                 notificationsList += `

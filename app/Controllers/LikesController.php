@@ -29,9 +29,9 @@ class likesController extends Controller{
 
     public function like($post_id)
     {
-        $this->likesModel->toggle_like($post_id, $_SESSION['user_info']['id']);
+        $this->likesModel->toggleLike($post_id, $_SESSION['user_info']['id']);
 
-        $this->NotificationsController->notificate_author_for_like($post_id);
+        $this->NotificationsController->notificateAuthorForLike($post_id);
 
         $route = str_replace('/the_cooler_twitter_clone/', '', parse_url($_SERVER['HTTP_REFERER'] ?? '', PHP_URL_PATH));
 
