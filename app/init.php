@@ -45,3 +45,5 @@ if (!isset($_SESSION['last_regeneration'])) {
 }
 
 $_SESSION["BURL"] = $config["BURL"];
+
+require_once "../app/Core/Dependencies.php";

@@ -7,15 +7,26 @@ use Core\Controller;
 use Models\user;
 use Models\follows;
 
+use Contracts\FollowsInterface;
+use Contracts\UserInterface;
+
 class FollowsController extends Controller{
 
     protected $userModel;
     protected $followsModel;
 
-    public function __construct(){
-        $this->userModel = new user();
-        $this->followsModel = new follows();
+    // public function __construct(){
+    //     $this->userModel = new user();
+    //     $this->followsModel = new follows();
+    // }
+    public function __construct(
+        FollowsInterface $followsModel,
+        UserInterface $userModel
+    ) {
+        $this->followsModel = $followsModel;
+        $this->userModel = $userModel;
     }
+
 
     public function followTo($user_id)
     {

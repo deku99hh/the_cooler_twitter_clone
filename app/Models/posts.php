@@ -4,8 +4,9 @@ namespace Models;
 
 use Core\QueryBuilder;
 use Core\model;
+use Contracts\PostsInterface;
 
-class posts extends model{
+class posts extends model implements PostsInterface{
 
     protected $builder;
 
@@ -17,62 +18,62 @@ class posts extends model{
     public function get_posts()
     {
 
-    if (isset($_SESSION['user_info'])) {
-        $posts = $this->builder
-                ->select('users', [
-                    'users.user_id'    => 'user_id',
-                    'users.username'   => 'username',
-                    'users.name'       => 'name',
-                    'users.verified'   => 'verified',
-                    'posts.post_id'    => 'post_id',
-                    'posts.post_text'  => 'post_text',
-                    'posts.created_at' => 'created_at',
-                    'COUNT(DISTINCT likes.user_id)' => 'total_likes',
-                    'IF(stars.user_id IS NOT NULL, 1, 0)' => 'is_stared'
-                ])
-                ->join('posts', 'users.user_id', 'posts.user_id', 'inner')
-                ->join('likes', 'posts.post_id', 'likes.post_id', 'left')
-                ->join('stars', 'posts.post_id', 'stars.post_id', 'left', 'AND stars.user_id = ' . $_SESSION['user_info']['id'])
-                ->groupBy([
-                    'users.user_id',
-                    'users.username',
-                    'users.name',
-                    'users.verified',
-                    'posts.post_id',
-                    'posts.post_text',
-                    'posts.created_at',
-                    'stars.user_id'
-                ])
-                ->GET()
-                ->execute();
+        if (isset($_SESSION['user_info'])) {
+            $posts = $this->builder
+                    ->select('users', [
+                        'users.user_id'    => 'user_id',
+                        'users.username'   => 'username',
+                        'users.name'       => 'name',
+                        'users.verified'   => 'verified',
+                        'posts.post_id'    => 'post_id',
+                        'posts.post_text'  => 'post_text',
+                        'posts.created_at' => 'created_at',
+                        'COUNT(DISTINCT likes.user_id)' => 'total_likes',
+                        'IF(stars.user_id IS NOT NULL, 1, 0)' => 'is_stared'
+                    ])
+                    ->join('posts', 'users.user_id', 'posts.user_id', 'inner')
+                    ->join('likes', 'posts.post_id', 'likes.post_id', 'left')
+                    ->join('stars', 'posts.post_id', 'stars.post_id', 'left', 'AND stars.user_id = ' . $_SESSION['user_info']['id'])
+                    ->groupBy([
+                        'users.user_id',
+                        'users.username',
+                        'users.name',
+                        'users.verified',
+                        'posts.post_id',
+                        'posts.post_text',
+                        'posts.created_at',
+                        'stars.user_id'
+                    ])
+                    ->GET()
+                    ->execute();
 
-    }
-    else {
-        $posts = $this->builder
-                ->select('users', [
-                    'users.user_id'    => 'user_id',
-                    'users.username'   => 'username',
-                    'users.name'       => 'name',
-                    'users.verified'   => 'verified',
-                    'posts.post_id'    => 'post_id',
-                    'posts.post_text'  => 'post_text',
-                    'posts.created_at' => 'created_at',
-                    'COUNT(DISTINCT likes.user_id)' => 'total_likes',
-                ])
-                ->join('posts', 'users.user_id', 'posts.user_id', 'inner')
-                ->join('likes', 'posts.post_id', 'likes.post_id', 'left')
-                ->groupBy([
-                    'users.user_id',
-                    'users.username',
-                    'users.name',
-                    'users.verified',
-                    'posts.post_id',
-                    'posts.post_text',
-                    'posts.created_at',
-                ])
-                ->GET()
-                ->execute();
-    }
+        }
+        else {
+            $posts = $this->builder
+                    ->select('users', [
+                        'users.user_id'    => 'user_id',
+                        'users.username'   => 'username',
+                        'users.name'       => 'name',
+                        'users.verified'   => 'verified',
+                        'posts.post_id'    => 'post_id',
+                        'posts.post_text'  => 'post_text',
+                        'posts.created_at' => 'created_at',
+                        'COUNT(DISTINCT likes.user_id)' => 'total_likes',
+                    ])
+                    ->join('posts', 'users.user_id', 'posts.user_id', 'inner')
+                    ->join('likes', 'posts.post_id', 'likes.post_id', 'left')
+                    ->groupBy([
+                        'users.user_id',
+                        'users.username',
+                        'users.name',
+                        'users.verified',
+                        'posts.post_id',
+                        'posts.post_text',
+                        'posts.created_at',
+                    ])
+                    ->GET()
+                    ->execute();
+        }
 
         return $posts;
 

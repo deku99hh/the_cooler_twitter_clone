@@ -5,7 +5,9 @@ namespace Services;
 use Models\user;
 use Models\val;
 
-class AuthService{
+use Contracts\AuthServiceInterface;
+
+class AuthService implements AuthServiceInterface{
 
     protected $userModel;
 

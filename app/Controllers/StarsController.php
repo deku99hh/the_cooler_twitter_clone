@@ -6,13 +6,20 @@ use Core\Controller;
 
 use Models\stars;
 
+use Contracts\StarsInterface;
+
 class StarsController extends Controller{
 
     protected $starsModel;
 
-    public function __construct()
-    {
-        $this->starsModel = new stars();
+    // public function __construct()
+    // {
+    //     $this->starsModel = new stars();
+    // }
+    public function __construct(
+        StarsInterface $starsModel,
+    ) {
+        $this->starsModel = $starsModel;
     }
 
     public function star($post_id)

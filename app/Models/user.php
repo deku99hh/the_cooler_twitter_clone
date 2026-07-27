@@ -4,8 +4,9 @@ namespace Models;
 
 use Core\QueryBuilder;
 use Core\model;
+use Contracts\UserInterface;
 
-class user extends model{
+class user extends model implements UserInterface{
 
     protected $builder;
 
@@ -41,7 +42,7 @@ class user extends model{
     {
         $this->set_user($username, $name, $pwd, $email);
     }
-    private function set_user($username, $name, $pwd, $email)
+    public function set_user($username, $name, $pwd, $email)
     {
 
         $options = [ 'cost' => 12 ];

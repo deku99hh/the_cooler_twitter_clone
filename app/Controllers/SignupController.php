@@ -7,15 +7,25 @@ use Services\AuthService;
 
 use Models\user;
 
+use Contracts\AuthServiceInterface;
+use Contracts\UserInterface;
+
 class SignupController extends Controller{
 
     protected $AuthService;
     protected $userModel;
 
-    public function __construct(){
-        $this->AuthService = new AuthService();
-        $this->userModel = new user();
-        // $this->validationModel = new val();
+    // public function __construct(){
+    //     $this->AuthService = new AuthService();
+    //     $this->userModel = new user();
+    //     // $this->validationModel = new val();
+    // }
+    public function __construct(
+        AuthServiceInterface $AuthService,
+        UserInterface $userModel,
+    ) {
+        $this->AuthService = $AuthService;
+        $this->userModel = $userModel;
     }
 
     public function index(){

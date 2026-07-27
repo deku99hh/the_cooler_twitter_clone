@@ -10,6 +10,10 @@ use Models\comments;
 
 use Controllers\NotificationsController;
 
+use Contracts\PostsInterface;
+use Contracts\CommentsInterface;
+use Contracts\NotificationsControllerInterface;
+
 class CommentController extends Controller{
 
     protected $postsModel;
@@ -17,13 +21,23 @@ class CommentController extends Controller{
     
     protected $NotificationsController;
 
-    public function __construct()
-    {
-        $this->postsModel = new posts();
-        $this->commentsModel = new comments();
+    // public function __construct()
+    // {
+    //     $this->postsModel = new posts();
+    //     $this->commentsModel = new comments();
 
-        $this->NotificationsController = new NotificationsController();
+    //     $this->NotificationsController = new NotificationsController();
+    // }
+    public function __construct(
+        PostsInterface $postsModel,
+        CommentsInterface $commentsModel,
+        NotificationsControllerInterface $NotificationsController
+    ) {
+        $this->postsModel = $postsModel;
+        $this->commentsModel = $commentsModel;
+        $this->NotificationsController = $NotificationsController;
     }
+
 
     public function comment($post_id)
     {

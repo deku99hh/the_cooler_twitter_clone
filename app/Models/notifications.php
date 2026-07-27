@@ -4,8 +4,9 @@ namespace Models;
 
 use Core\QueryBuilder;
 use Core\model;
+use Contracts\NotificationsInterface;
 
-class notifications extends model {
+class notifications extends model implements NotificationsInterface{
 
     protected $builder;
 

@@ -4,8 +4,9 @@ namespace Models;
 
 use Core\QueryBuilder;
 use Core\model;
+use Contracts\StarsInterface;
 
-class stars extends model{
+class stars extends model implements StarsInterface{
     
     protected $builder;
 

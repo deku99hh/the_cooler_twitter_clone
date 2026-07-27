@@ -8,17 +8,31 @@ use Models\user;
 use Models\follows;
 use Models\profile;
 
+use Contracts\UserInterface;
+use Contracts\FollowsInterface;
+use Contracts\ProfileInterface;
+
 class ProfileController extends Controller{
 
     protected $userModel;
     protected $followsModel;
     protected $profileModel;
 
-    public function __construct(){
-        $this->userModel = new user();
-        $this->followsModel = new follows();
-        $this->profileModel = new profile();
+    // public function __construct(){
+    //     $this->userModel = new user();
+    //     $this->followsModel = new follows();
+    //     $this->profileModel = new profile();
+    // }
+    public function __construct(
+        UserInterface $userModel,
+        FollowsInterface $followsModel,
+        ProfileInterface $profileModel
+    ) {
+        $this->userModel = $userModel;
+        $this->followsModel = $followsModel;
+        $this->profileModel = $profileModel;
     }
+
 
     public function index()
     {

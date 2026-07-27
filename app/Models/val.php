@@ -4,8 +4,9 @@ namespace Models;
 
 use Core\QueryBuilder;
 use Core\model;
+use Contracts\ValInterface;
 
-class val extends model{
+class val extends model implements ValInterface{
 
     protected $builder;
 
@@ -23,7 +24,7 @@ class val extends model{
         }
 
     }
-    private function get_user($username)
+    public function get_user($username)
     {
 
         $user = $this->builder->select('users', ['username'])
@@ -46,7 +47,7 @@ class val extends model{
         }
 
     }
-    private function get_password($username)
+    public function get_password($username)
     {
         $user = $this->builder->select('users', ['username', 'pwd'])
                 ->WHERE(['username'], [$username], ['='])
@@ -65,7 +66,7 @@ class val extends model{
             return false;
         }
     }
-    private function get_email($email)
+    public function get_email($email)
     {
 
         $user = $this->builder->select('users', ['username'])

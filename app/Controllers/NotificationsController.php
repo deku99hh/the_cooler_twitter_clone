@@ -7,18 +7,34 @@ use Models\notifications;
 use Models\posts;
 use Models\follows;
 
-class NotificationsController extends Controller {
+use Contracts\NotificationsInterface;
+use Contracts\FollowsInterface;
+use Contracts\PostsInterface;
+
+use Contracts\NotificationsControllerInterface;
+
+class NotificationsController extends Controller implements NotificationsControllerInterface {
 
     protected $notificationsModel;
     protected $followsModel;
     protected $postsModel;
 
-    public function __construct()
-    {
-        $this->notificationsModel = new notifications();
-        $this->followsModel = new follows();
-        $this->postsModel = new posts();
+    // public function __construct()
+    // {
+    //     $this->notificationsModel = new notifications();
+    //     $this->followsModel = new follows();
+    //     $this->postsModel = new posts();
+    // }
+    public function __construct(
+        NotificationsInterface $notificationsModel,
+        FollowsInterface $followsModel,
+        PostsInterface $postsModel
+    ) {
+        $this->notificationsModel = $notificationsModel;
+        $this->followsModel = $followsModel;
+        $this->postsModel = $postsModel;
     }
+
 
     public function index()
     {

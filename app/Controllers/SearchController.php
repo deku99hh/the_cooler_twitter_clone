@@ -7,13 +7,20 @@ use Services\AuthService;
 
 use Models\search;
 
+use Contracts\SearchInterface;
+
 class SearchController extends Controller{
 
     protected $searchModel;
 
-    public function __construct()
-    {
-        $this->searchModel = new search();
+    // public function __construct()
+    // {
+    //     $this->searchModel = new search();
+    // }
+    public function __construct(
+        SearchInterface $searchModel,
+    ) {
+        $this->searchModel = $searchModel;
     }
 
     public function searchRedirect()

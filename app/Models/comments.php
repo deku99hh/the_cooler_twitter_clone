@@ -4,8 +4,9 @@ namespace Models;
 
 use Core\QueryBuilder;
 use Core\model;
+use Contracts\CommentsInterface;
 
-class comments extends model{
+class comments extends model implements CommentsInterface{
 
     protected $builder;
 

@@ -40,8 +40,10 @@
             let temp = `
                 <div class="card mb-3 shadow-sm">
                     <div class="card-body">
-                        <h6 class="card-title fw-bold mb-0">${post.name}</h6>
-                        <small class="text-muted">@${post.username}</small>
+                        <a href="http://localhost/the_cooler_twitter_clone/Profile/openProfile/${post.user_id}" class="text-decoration-none text-dark">
+                            <h6 class="card-title fw-bold mb-0">${post.name}</h6>
+                            <small class="text-muted">@${post.username}</small>
+                        </a>
                         <p class="card-text mt-2">${post.post_text}</p>
                         <small class="text-muted d-block mb-3">${post.created_at}</small>
 

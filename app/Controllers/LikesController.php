@@ -9,18 +9,29 @@ use Models\likes;
 
 use Controllers\NotificationsController;
 
+use Contracts\LikesInterface;
+use Contracts\NotificationsControllerInterface;
+
 class likesController extends Controller{
 
     protected $likesModel;
 
     protected $NotificationsController;
 
-    public function __construct()
-    {
-        $this->likesModel = new likes();
+    // public function __construct()
+    // {
+    //     $this->likesModel = new likes();
 
-        $this->NotificationsController = new NotificationsController();
+    //     $this->NotificationsController = new NotificationsController();
+    // }
+    public function __construct(
+        LikesInterface $likesModel,
+        NotificationsControllerInterface $NotificationsController
+    ) {
+        $this->likesModel = $likesModel;
+        $this->NotificationsController = $NotificationsController;
     }
+
 
     public function like($post_id)
     {

@@ -4,8 +4,9 @@ namespace Models;
 
 use Core\QueryBuilder;
 use Core\model;
+use Contracts\SearchInterface;
 
-class search extends model{
+class search extends model implements SearchInterface{
 
     protected $builder;
 

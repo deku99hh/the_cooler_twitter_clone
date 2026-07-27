@@ -4,8 +4,9 @@ namespace Models;
 
 use Core\QueryBuilder;
 use Core\model;
+use Contracts\LikesInterface;
 
-class likes extends model{
+class likes extends model implements LikesInterface{
 
     protected $builder;
 

@@ -4,8 +4,9 @@ namespace Models;
 
 use Core\QueryBuilder;
 use Core\model;
+use Contracts\ProfileInterface;
 
-class profile extends model{
+class profile extends model implements ProfileInterface{
 
     protected $builder;
 

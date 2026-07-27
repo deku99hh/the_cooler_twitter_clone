@@ -13,7 +13,7 @@ class App{
         $this->render();
     }
 
-    private function prepareURl() {
+    public function prepareURl() {
 
         
         $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -37,9 +37,10 @@ class App{
         $this->controller = "Controllers\\" . $this->controller;
     }
 
-    private function render(){
+    public function render(){
         if (class_exists($this->controller)) {
-            $controller = new ("\\" . ltrim($this->controller, "\\"));
+            // $controller = new ("\\" . ltrim($this->controller, "\\"));
+            $controller = Container::resolve($this->controller);
             
             if (method_exists($controller, $this->action)) {
                 

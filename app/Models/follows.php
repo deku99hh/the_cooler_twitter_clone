@@ -4,8 +4,9 @@ namespace Models;
 
 use Core\QueryBuilder;
 use Core\model;
+use Contracts\FollowsInterface;
 
-class follows extends model{
+class follows extends model implements FollowsInterface{
 
     protected $builder;
 
