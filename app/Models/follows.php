@@ -20,11 +20,6 @@ class follows extends model implements FollowsInterface{
     // all b'es
     public function get_follows($my_id)
     {
-        // $users = $this->builder->select('users', ['username', 'verified', 'name', 'user_id'])
-        //     ->join('follows', 'users.user_id', 'follows.user_who_follow', 'inner')
-        //     ->WHERE(['follows.user_who_follow'], [$my_id], ['='])
-        //     ->GET()
-        //     ->execute();
         $users = $this->builder->select('users', ['username', 'verified', 'name', 'user_id'])
             ->join('follows', 'users.user_id', 'follows.user_who_is_followed', 'inner')
             ->WHERE(['follows.user_who_follow'], [$my_id], ['='])

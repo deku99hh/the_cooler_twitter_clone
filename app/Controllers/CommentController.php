@@ -21,13 +21,6 @@ class CommentController extends Controller{
     
     protected $NotificationsController;
 
-    // public function __construct()
-    // {
-    //     $this->postsModel = new posts();
-    //     $this->commentsModel = new comments();
-
-    //     $this->NotificationsController = new NotificationsController();
-    // }
     public function __construct(
         PostsInterface $postsModel,
         CommentsInterface $commentsModel,

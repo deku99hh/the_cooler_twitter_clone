@@ -22,8 +22,6 @@
         let res = <?php print_r(json_encode($response)) ?> ;
         console.log(res);
 
-        // http://localhost/the_cooler_twitter_clone/search/search/1
-
         res.data.posts.forEach(post => {
             post.post_text = convertHashtagsToLinks(post.post_text);
         });

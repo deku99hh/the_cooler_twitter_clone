@@ -19,12 +19,6 @@ class NotificationsController extends Controller implements NotificationsControl
     protected $followsModel;
     protected $postsModel;
 
-    // public function __construct()
-    // {
-    //     $this->notificationsModel = new notifications();
-    //     $this->followsModel = new follows();
-    //     $this->postsModel = new posts();
-    // }
     public function __construct(
         NotificationsInterface $notificationsModel,
         FollowsInterface $followsModel,

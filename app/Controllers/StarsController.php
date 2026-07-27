@@ -12,10 +12,6 @@ class StarsController extends Controller{
 
     protected $starsModel;
 
-    // public function __construct()
-    // {
-    //     $this->starsModel = new stars();
-    // }
     public function __construct(
         StarsInterface $starsModel,
     ) {

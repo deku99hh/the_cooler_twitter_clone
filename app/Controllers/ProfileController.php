@@ -18,11 +18,6 @@ class ProfileController extends Controller{
     protected $followsModel;
     protected $profileModel;
 
-    // public function __construct(){
-    //     $this->userModel = new user();
-    //     $this->followsModel = new follows();
-    //     $this->profileModel = new profile();
-    // }
     public function __construct(
         UserInterface $userModel,
         FollowsInterface $followsModel,

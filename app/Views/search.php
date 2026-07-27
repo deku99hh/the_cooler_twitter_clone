@@ -36,20 +36,6 @@
 
         res.data.posts = res.data.posts.flat().sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
 
-
-        if (res.user_info) {
-            let postingBox = `
-                <div class="alert alert-light border p-3 mb-4">
-                    <h5 class="fw-bold">Welcome, ${res.user_info.name} !</h5>
-                    <form action="http://localhost/the_cooler_twitter_clone/Post/makeNewPost" method="POST" class="mt-3">
-                        <textarea class="form-control mb-2" name="post_text" rows="3" placeholder="What's happening?" required></textarea>
-                        <button type="submit" class="btn btn-primary rounded-pill px-4">Post</button>
-                    </form>
-                </div>
-            `
-            // document.querySelector('.postingBox').innerHTML = postingBox;
-        }
-
         let posts = "";
         res.data.posts.reverse().forEach(post => {
             let temp = `

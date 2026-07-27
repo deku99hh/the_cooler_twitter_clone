@@ -12,10 +12,6 @@ class HomeController extends Controller{
 
     protected $postsModel;
     
-    // public function __construct()
-    // {
-    //     $this->postsModel = new posts();
-    // }
     public function __construct(
         PostsInterface $postsModel,
     ) {

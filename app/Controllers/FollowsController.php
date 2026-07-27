@@ -15,10 +15,6 @@ class FollowsController extends Controller{
     protected $userModel;
     protected $followsModel;
 
-    // public function __construct(){
-    //     $this->userModel = new user();
-    //     $this->followsModel = new follows();
-    // }
     public function __construct(
         FollowsInterface $followsModel,
         UserInterface $userModel

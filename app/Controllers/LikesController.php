@@ -18,12 +18,6 @@ class likesController extends Controller{
 
     protected $NotificationsController;
 
-    // public function __construct()
-    // {
-    //     $this->likesModel = new likes();
-
-    //     $this->NotificationsController = new NotificationsController();
-    // }
     public function __construct(
         LikesInterface $likesModel,
         NotificationsControllerInterface $NotificationsController
@@ -35,7 +29,6 @@ class likesController extends Controller{
 
     public function like($post_id)
     {
-        // $this->requirePostMethod("");
         $this->likesModel->toggle_like($post_id, $_SESSION['user_info']['id']);
 
         $this->NotificationsController->notificate_author_for_like($post_id);

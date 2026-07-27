@@ -17,11 +17,6 @@ class LoginController extends Controller{
     protected $userModel;
 
 
-    // public function __construct(){
-    //     $this->AuthService = new AuthService();
-    //     $this->userModel = new user();
-    //     // $this->validationModel = new val();
-    // }
     public function __construct(
         AuthServiceInterface $AuthService,
         UserInterface $userModel
