@@ -1,0 +1,56 @@
+<?php
+
+namespace Models;
+
+use Core\QueryBuilder;
+use Core\model;
+
+class notifications extends model {
+
+    protected $builder;
+
+    public function __construct()
+    {
+        $this->builder = new QueryBuilder();
+    }
+
+    public function send_Notification_to_my_followers($who_follows_me, $text)
+    {
+        foreach ($who_follows_me as $one_who_follow_me) {
+            $this->builder->create('notification', 
+                ['user_id', 'post_id', 'notification_text'], 
+                [$one_who_follow_me['user_id'], null, $text]
+            )->execute();
+        }
+    }
+
+    public function send_Notification_to_author($author_id, $post_id, $text)
+    {
+        $this->builder->create('notification', 
+            ['user_id', 'post_id', 'notification_text'], 
+            [$author_id, $post_id, $text]
+        )->execute();
+    }
+
+    public function get_my_Notification($user_id, $myfollows)
+    {
+
+        $notifications = $this->builder->selectAll('notification')
+            ->GET()
+            ->execute();
+
+        $result = [];
+
+        for ($i=0; $i < count($notifications) ; $i++) { 
+
+            foreach ($myfollows as $follow) {
+                if ($follow['user_id'] == $notifications[$i]['user_id']) {
+                    $result[$i] = $notifications[$i];
+                }
+            }
+        
+        }
+
+        return $result;
+    }
+}

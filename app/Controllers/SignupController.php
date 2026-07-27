@@ -1,0 +1,63 @@
+<?php
+
+namespace Controllers;
+
+use Core\Controller;
+use Services\AuthService;
+
+use Models\user;
+
+class SignupController extends Controller{
+
+    protected $AuthService;
+    protected $userModel;
+
+    public function __construct(){
+        $this->AuthService = new AuthService();
+        $this->userModel = new user();
+        // $this->validationModel = new val();
+    }
+
+    public function index(){
+        $this->redirectIfAuthenticated();
+        $this->load('signup');
+    }
+
+    public function signup(){
+        $this->requirePostMethod("signup");
+        $username = $_POST["username"];
+        $pwd = $_POST["pwd"];
+        $email = $_POST["email"];
+        $name = $_POST["name"];
+
+        $errors = $this->AuthService->validateSignup($username, $pwd, $email);
+
+        if ($errors) {
+            $_SESSION['errors_signup'] = $errors;
+
+            $user_data = $this->userModel->get_user_data($username);
+            $signupData = [
+                "username" => $username,
+                "email" => $email,
+                "name" => $name,
+            ];
+            $_SESSION['signupData'] = $signupData;
+
+            $this->redirect("signup");
+        }
+
+        $this->userModel->creat_user($username, $name, $pwd, $email);
+        
+        $user_data = $this->userModel->get_user_data($username);
+        $_SESSION['user_info'] = [
+            'id' => $user_data['id'],
+            'username' => $user_data['username'],
+            'email' => $user_data['email'],
+            'verified' => $user_data['verified'],
+            'name' => $user_data['name'],
+        ];
+        
+        $this->redirect("");
+
+    }
+}
