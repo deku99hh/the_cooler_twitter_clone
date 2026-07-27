@@ -20,6 +20,21 @@
         let res = <?php print_r(json_encode($response)) ?> ;
         console.log(res);
 
+        res.data.post_data.post_text = convertHashtagsToLinks(res.data.post_data.post_text);
+
+        res.data.commentsarr.forEach(element => {
+            element.comments_text = convertHashtagsToLinks(element.comments_text);
+        }); 
+
+        function convertHashtagsToLinks(text) {
+            if (!text) return text;
+            const hashtagRegex = /#([\w\u0600-\u06FF]+)/g;
+            return text.replace(hashtagRegex, (match, hashtagName) => {
+                return `<a href="/the_cooler_twitter_clone/search/search/${hashtagName}" class="hashtag-link">#${hashtagName}</a>`;
+            });
+        }
+
+
         let post = `
             <div class="card mb-3 shadow-sm">
                 <div class="card-body">

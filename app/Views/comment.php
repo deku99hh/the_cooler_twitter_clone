@@ -20,6 +20,9 @@
         let res = <?php print_r(json_encode($response)) ?> ;
         console.log(res);
 
+        res.data.posts = res.data.posts.flat().sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+
+
         let post = `
             <div class="card mb-3 shadow-sm border-0 p-2">
                 <div class="card-body">

@@ -25,11 +25,11 @@ class notifications extends model implements NotificationsInterface{
         }
     }
 
-    public function send_Notification_to_author($author_id, $post_id, $text)
+    public function send_Notification_to_author($user_id, $post_id, $text)
     {
         $this->builder->create('notification', 
             ['user_id', 'post_id', 'notification_text'], 
-            [$author_id, $post_id, $text]
+            [$user_id, $post_id, $text]
         )->execute();
     }
 

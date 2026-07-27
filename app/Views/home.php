@@ -22,6 +22,22 @@
         let res = <?php print_r(json_encode($response)) ?> ;
         console.log(res);
 
+        // http://localhost/the_cooler_twitter_clone/search/search/1
+
+        res.data.posts.forEach(post => {
+            post.post_text = convertHashtagsToLinks(post.post_text);
+        });
+
+        function convertHashtagsToLinks(text) {
+            if (!text) return text;
+            const hashtagRegex = /#([\w\u0600-\u06FF]+)/g;
+            return text.replace(hashtagRegex, (match, hashtagName) => {
+                return `<a href="/the_cooler_twitter_clone/search/search/${hashtagName}" class="hashtag-link">#${hashtagName}</a>`;
+            });
+        }
+
+        res.data.posts = res.data.posts.flat().sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+
         if (res.user_info) {
             let postingBox = `
                 <div class="alert alert-light border p-3 mb-4">
